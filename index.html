@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotecmed — Ingeniería Biomédica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="nav" id="navbar">
+    <div class="container nav-inner">
+      <div class="brand">COTECMED</div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="inicio" class="hero" style="background-image: url('/img/hero.jpg')">
+    <div class="overlay"></div>
+    <div class="container hero-content" data-aos="fade-up">
+      <h1 style="text-transform: uppercase;">Servicios de mantenimiento biomedico y tecnovigilancia</h1>
+      <p class="subtitle">Cuidamos la tecnología que cuida de la vida.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="https://wa.me/573146210397" target="_blank" rel="noopener">📞 Contáctanos por WhatsApp</a>
+        <a class="btn btn-outline" href="mailto:cotecmedcol@gmail.com">✉️ Escríbenos un correo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros" class="section">
+    <div class="container" data-aos="fade-up">
+      <div class="grid-2">
+        <div>
+          <h2>Quiénes somos</h2>
+          <p style="text-align: justify;">En <strong>Cotecmed</strong> somos un equipo de ingenieros biomédicos comprometidos con la calidad, la seguridad y la innovación tecnológica. Ofrecemos soluciones integrales en mantenimiento, tecnovigilancia e ingeniería clínica para garantizar el óptimo funcionamiento de los equipos médicos.</p>
+          <p style="text-align: justify;">Nuestra misión es proteger la tecnología que salva vidas mediante servicios especializados, prácticas seguras y atención personalizada.</p>
+        </div>
+        <div class="img-card">
+          <img src="/img/img1.jpg" alt="Equipo biomédico" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="section bg-light">
+    <div class="container" data-aos="fade-up">
+      <h2>Nuestros servicios</h2>
+      <p class="lead">Ofrecemos una gama completa de servicios para mantener la seguridad y el rendimiento de los equipos médicos.</p>
+
+      <div class="cards">
+        <article class="card" data-aos="fade-up" data-aos-delay="50">
+          <h3>Mantenimiento preventivo y correctivo</h3>
+          <p>Planes y ejecuciones para preservar y recuperar la funcionalidad de equipos médicos, con registros y pruebas post-servicio.</p>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Tecnovigilancia</h3>
+          <p>Gestión, monitoreo y reporte de eventos adversos relacionados con dispositivos médicos, conforme a normativa vigente.</p>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="150">
+          <h3>Ingeniería clínica / Habilitación</h3>
+          <p>Asesoría técnica para la habilitación y planificación de espacios clínicos y la integración segura de equipos biomédicos.</p>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="200">
+          <h3>Asesoramiento y auditoría</h3>
+          <p>Evaluaciones técnicas y auditorías para identificar riesgos, cumplimientos y mejoras en procesos y equipos.</p>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="250">
+          <h3>Asesoría comercial</h3>
+          <p>Apoyo en selección de equipos, negociación con proveedores y diseño de soluciones optimizadas según necesidades.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="section bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2>Contáctanos</h2>
+      <p class="lead">¿Tienes dudas o deseas una cotización? Escríbenos directamente.</p>
+
+      <div class="contact-grid">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" required />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" name="telefono" required />
+          </div>
+
+          <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" />
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+          <p id="form-status" class="status-msg"></p>
+        </form>
+
+        <div class="contact-info">
+          <ul class="contact-list">
+            <li><strong>Correo:</strong> cotecmedcol@gmail.com</li>
+            <li><strong>Teléfono:</strong> 314 621 0397</li>
+          </ul>
+          <div class="contact-actions">
+            <a class="btn btn-outline-color" href="mailto:cotecmedcol@gmail.com">✉️ Escríbenos</a>
+            <a class="btn btn-primary" href="https://wa.me/573146210397" target="_blank">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand">Cotecmed</div>
+        <p>© 2025 Cotecmed — Todos los derechos reservados.</p>
+      </div>
+      <div>
+        <p>Contact: <a href="mailto:cotecmedcol@gmail.com">cotecmedcol@gmail.com</a> • +57 314 621 0397</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="/js/main.js"></script>
+  <script> AOS.init({ duration: 700, once: true }); </script>
+</body>
+</html>
