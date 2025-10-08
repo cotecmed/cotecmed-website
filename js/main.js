@@ -39,12 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const statusMsg = document.getElementById("form-status");
 
-  if (!form) return; // Evita error si el formulario no existe
+  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Recopila los datos del formulario
     const data = {
       nombre: form.nombre.value.trim(),
       correo: form.correo.value.trim(),
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       mensaje: form.mensaje.value.trim()
     };
 
-    // Validación básica
     if (!data.nombre || !data.correo || !data.mensaje) {
       statusMsg.textContent = "⚠️ Por favor completa los campos obligatorios.";
       statusMsg.classList.add("show", "error");
@@ -63,15 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
     statusMsg.textContent = "⏳ Enviando mensaje...";
     statusMsg.classList.add("show");
 
+    // ===============================
+    // CONFIGURACIÓN DE CONEXIÓN
+    // ===============================
+    const proxyUrl = "https://corsproxy.io/?";
+    const scriptUrl =
+      "https://script.google.com/macros/s/AKfycbyO7mLz3myS0xRlds3RKys9Fopjl7REEROCq1q54bD0uOupvrAPIYffSnqiOlIF0Ufo3A/exec";
+
     try {
-      const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbzAahVJ8uwrkySeKyflpZ6GB2UySYGm_hh96B5lkusyJlKloke8R9HpUT5KVLQ_PLei/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        }
-      );
+      const res = await fetch(proxyUrl + scriptUrl, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
 
       const result = await res.json();
 
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         statusMsg.classList.add("show", "success");
         form.reset();
 
-        // Oculta el mensaje después de 4 segundos
+        // Oculta mensaje después de 4 segundos
         setTimeout(() => {
           statusMsg.classList.remove("show", "success");
         }, 4000);
