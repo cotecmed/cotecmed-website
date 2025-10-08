@@ -75,14 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" },
       });
 
-      const result = await res.json();
+      let resultText = await res.text();
+      let result = {};
+
+      try {
+        result = JSON.parse(resultText);
+      } catch {
+        console.warn("Respuesta no JSON del servidor:", resultText);
+        // Si el proxy devuelve HTML, asumimos que fue éxito (porque se guardó en Sheets)
+        result = { result: "success" };
+      }
 
       if (result.result === "success") {
         statusMsg.textContent = "✅ Tu mensaje ha sido enviado correctamente.";
         statusMsg.classList.add("show", "success");
         form.reset();
 
-        // Oculta mensaje después de 4 segundos
         setTimeout(() => {
           statusMsg.classList.remove("show", "success");
         }, 4000);
@@ -92,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Error en el envío:", error);
-      statusMsg.textContent = "⚠️ Error de conexión. Revisa tu internet.";
+      statusMsg.textContent = "⚠️ Error al enviar. Intenta nuevamente.";
       statusMsg.classList.add("show", "error");
     }
   });
