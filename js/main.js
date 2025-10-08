@@ -1,11 +1,13 @@
+// ===============================
+// NAVBAR SCROLL Y MENÚ MÓVIL
+// ===============================
+
 document.addEventListener("DOMContentLoaded", () => {
-  // ===============================
-  // NAVBAR SCROLL Y MENÚ MÓVIL
-  // ===============================
   const navbar = document.getElementById("navbar");
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
 
+  // Cambia el estilo del navbar al hacer scroll
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       navbar.classList.add("scrolled");
@@ -16,88 +18,89 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Menú hamburguesa (móvil)
   navToggle.addEventListener("click", () => {
     navLinks.classList.toggle("show");
   });
 
+  // Cierra el menú al hacer clic en un enlace
   navLinks.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("show");
     });
   });
+});
 
-  // ===============================
-  // FORMULARIO DE CONTACTO
-  // ===============================
+// ===============================
+// FORMULARIO DE CONTACTO
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const statusMsg = document.getElementById("form-status");
 
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  if (!form) return; // Evita error si el formulario no existe
 
-      const data = {
-        nombre: form.nombre.value.trim(),
-        correo: form.correo.value.trim(),
-        telefono: form.telefono.value.trim(),
-        asunto: form.asunto.value.trim(),
-        mensaje: form.mensaje.value.trim()
-      };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      // Validación de campos obligatorios
-      if (!data.nombre || !data.correo || !data.mensaje) {
-        statusMsg.textContent = "⚠️ Por favor completa los campos obligatorios.";
-        statusMsg.classList.add("show", "error");
-        return;
-      }
+    // Recopila los datos del formulario
+    const data = {
+      nombre: form.nombre.value.trim(),
+      correo: form.correo.value.trim(),
+      telefono: form.telefono.value.trim(),
+      asunto: form.asunto.value.trim(),
+      mensaje: form.mensaje.value.trim()
+    };
 
-      // Validación de correo electrónico
-      const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!correoValido.test(data.correo)) {
-        statusMsg.textContent = "⚠️ Ingresa un correo válido.";
-        statusMsg.classList.add("show", "error");
-        return;
-      }
+    // Validación básica
+    if (!data.nombre || !data.correo || !data.mensaje) {
+      statusMsg.textContent = "⚠️ Por favor completa los campos obligatorios.";
+      statusMsg.classList.add("show", "error");
+      return;
+    }
 
-      statusMsg.textContent = "⏳ Enviando mensaje...";
-      statusMsg.classList.add("show");
+    statusMsg.textContent = "⏳ Enviando mensaje...";
+    statusMsg.classList.add("show");
 
-      try {
-        const res = await fetch(
-          "https://script.google.com/macros/s/AKfycbyi2P5WjGCXjKNjCHUzI2YnfwqZC0QH8_5EqGDA_1zwaTmjlk53khOQlm2LhTKEQ9O68g/exec",
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          }
-        );
-
-        const result = await res.json();
-
-        if (result.result === "success") {
-          statusMsg.textContent = "✅ Tu mensaje ha sido enviado correctamente.";
-          statusMsg.classList.add("show", "success");
-          form.reset();
-          setTimeout(() => {
-            statusMsg.classList.remove("show", "success");
-          }, 4000);
-        } else {
-          statusMsg.textContent = "❌ Ocurrió un error. Intenta nuevamente.";
-          statusMsg.classList.add("show", "error");
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbzAahVJ8uwrkySeKyflpZ6GB2UySYGm_hh96B5lkusyJlKloke8R9HpUT5KVLQ_PLei/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" }
         }
-      } catch (error) {
-        console.error("Error en el envío:", error);
-        statusMsg.textContent = "⚠️ Error de conexión. Revisa tu internet.";
+      );
+
+      const result = await res.json();
+
+      if (result.result === "success") {
+        statusMsg.textContent = "✅ Tu mensaje ha sido enviado correctamente.";
+        statusMsg.classList.add("show", "success");
+        form.reset();
+
+        // Oculta el mensaje después de 4 segundos
+        setTimeout(() => {
+          statusMsg.classList.remove("show", "success");
+        }, 4000);
+      } else {
+        statusMsg.textContent = "❌ Ocurrió un error. Intenta nuevamente.";
         statusMsg.classList.add("show", "error");
       }
-    });
-  }
+    } catch (error) {
+      console.error("Error en el envío:", error);
+      statusMsg.textContent = "⚠️ Error de conexión. Revisa tu internet.";
+      statusMsg.classList.add("show", "error");
+    }
+  });
+});
 
-  // ===============================
-  // ANIMACIONES AOS
-  // ===============================
+// ===============================
+// ANIMACIONES AOS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
   if (typeof AOS !== "undefined") {
     AOS.init({
       duration: 700,
@@ -105,4 +108,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
